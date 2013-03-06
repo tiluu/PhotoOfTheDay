@@ -1,0 +1,19 @@
+
+img {
+	height: 400px;
+	width: 300px;
+	padding: 20px;
+	background-color: gray;
+}
+
+li {
+	display: inline;
+	margin: 10px;
+	float: left;
+}
+
+button {
+	position: fixed;
+	bottom: 0;
+	right: 100px;
+}
