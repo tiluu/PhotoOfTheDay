@@ -12,8 +12,12 @@ li {
 	float: left;
 }
 
-button {
+#next {
 	position: fixed;
 	bottom: 0;
 	right: 100px;
+}
+#city {
+	float: right;
+	width: 250px;
 }
