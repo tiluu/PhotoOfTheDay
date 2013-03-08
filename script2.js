@@ -45,7 +45,7 @@ jQuery(function($){
 			tag=data.tags
 			for(i=0; i<=tag.length; i++){
 				if(tag[i]=="photooftheday"){
-					photo = "<div style=display:none><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
+					photo = "<div><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
 					$('#target').append(photo);	
 				}
 			}
@@ -60,8 +60,9 @@ jQuery(function($){
 
 	}
 
-	$('div#city button').click(function(){
+	$('div#city a').click(function(){
 		var city= $(this).attr('id');
+		$("div#target div").remove();
 		switch(city)
 		{
 			case "nyc":
