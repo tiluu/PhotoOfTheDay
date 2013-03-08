@@ -41,21 +41,23 @@ jQuery(function($){
 	function getPhoto(pics){
 		console.log(pics);
 		next="&max_id="+pics.pagination.next_max_id;
-		var imageCount=false;
 		$.each(pics.data, function(index, data){
 			tag=data.tags
 			for(i=0; i<=tag.length; i++){
 				if(tag[i]=="photooftheday"){
-					photo = "<li><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'</img></a></li>";
+					photo = "<div style=display:none><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
 					$('#target').append(photo);	
-				imageCount = true
 				}
 			}
 		});
-//If there isn't a tag in the data that we are looking for, it will continue to run the grab(); until an image is found.
-		if(imageCount!=true){
+//it will continue to run the grab() until there isn't anymore more photos to get Instagram;
+		if(pics.data.length!=0){
 			grab(next);
 		}
+		else {
+			$('#target').append("<p>Oops! There are no more photos for the day!</p>")
+		}
+
 	}
 
 	$('div#city button').click(function(){
@@ -107,8 +109,10 @@ jQuery(function($){
 		}
 		getLocation(location);
 	})
-	
+		
+				
 	$('#next').click(function(){
-		grab(next);
+		$('#target div').hide().next().show();
+
 	});
 });
