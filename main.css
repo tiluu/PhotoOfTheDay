@@ -1,30 +1,52 @@
+body, html {
+	height: 100px;
+	margin: 0px;
+	padding: 0px;
+	font-family: helvetica;
+}
 header {
 	text-align: center;
+	height: 300px;
+	
+}
+h1 {
+	padding: 20px;
+	height: 200px;
 }
 a {
 	text-decoration: none;
 	color: black;
+	padding: 10px;
+	position: relative;
+	
 }
-img {
-	height: 400px;
-	width: 300px;
-	padding: 20px;
-	background-color: gray;
-}
-div#target {
-	width: 80%;
+div#loader {
+	display: block;
+	width: 30px;
+	height: 50px;
 	margin: auto;
 }
-div#target div{
-	float: left;
-	margin: 10px;
-}
-
-#next {
-	position: fixed;
-	bottom: 0;
-	right: 100px;
-}
-.hidden {
+div#loader img {
+	position: relative;
+	top: 50%;
+	right: 50%;
 	display: none;
 }
+
+div#target {
+	width: 1140px;
+	margin: auto;
+}
+div#target div {
+	float: left;
+	padding: 10px;
+	margin: auto;
+	
+}
+div#target img{
+	height: 300px;
+	width: 300px;
+	padding: 20px;
+	background-color: #333;
+}
+

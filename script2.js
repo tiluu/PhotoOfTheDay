@@ -1,20 +1,31 @@
 jQuery(function($){
 	var access_token = '4112123.f59def8.e61dd790f91c48e6803d18459723906a';
-	var location;
-	var insta_url= "https://api.instagram.com/v1/locations/search?foursquare_v2_id=" ;
+	var locationID;
 	var next;
-	var insta_photo;
+	var data;
+	var insta_url = "https://api.instagram.com/v1/locations/search?foursquare_v2_id=";
+	var location;
+	var fetching = null;
 
+	$('nav#city a').click(function(){
+		location= $(this).data('city');
+		next= " ";
+			getLocation(location);
+	})
 
-//Retrives photos from location and returns with location ids lat=48.858844&lng=2.294351&distance=5000
-	function getLocation(location){
+//Retrives photos from location with location ids 
+function getLocation(location){
 		$.ajax(insta_url+location, {
 			data: {'access_token':access_token},
 			dataType:'jsonp',
+			beforeSend: function(){
+				$('div#loader img').show();
+				$("div#target div").remove();
+			},
 			success: dataLoaded
 		});
 	}
-//For each location information return, location ID is extracted and used to find media information
+	
 	function dataLoaded(instagramData){
 		console.log(instagramData);
 		$.each(instagramData.data, function(index, locationID){
@@ -28,92 +39,41 @@ jQuery(function($){
 			}
 		)
 	}
-//Uses var next to grab the next set of data. 
-	function grab(next){
-		$.ajax(insta_photo+next, {
-			data: {'access_token':access_token},
-			dataType:'jsonp',
-			success: getPhoto
-		});
-	}
+
 
 //Takes the media and find each image to add to html, assigns var next with pagination id. 
 	function getPhoto(pics){
 		console.log(pics);
 		next="&max_id="+pics.pagination.next_max_id;
+		data=pics.data.length
 		$.each(pics.data, function(index, data){
 			tag=data.tags
 			for(i=0; i<=tag.length; i++){
 				if(tag[i]=="photooftheday"){
+					$('div#loader img').hide();
 					photo = "<div><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
 					$('#target').append(photo);	
 				}
 			}
 		});
-//it will continue to run the grab() until there isn't anymore more photos to get Instagram;
-		if(pics.data.length!=0){
+		if(true){
 			grab(next);
 		}
-		else {
-			$('#target').append("<p>Oops! There are no more photos for the day!</p>")
-		}
-
 	}
-
-	$('div#city a').click(function(){
-		var city= $(this).attr('id');
-		$("div#target div").remove();
-		switch(city)
-		{
-			case "nyc":
-			location="4acf58baf964a52028d320e3";
-			break;
-
-			case "sf":
-			location="4c82f252d92ea09323185072";
-			break;
-
-			case "london":
-			location="4e10c02045dde6c62dcd8b19";
-			break;
-
-			case "rome":
-			location= "4e8bab8fb803540e781e7d03";
-			break;
-
-			case "bangkok":
-			location= "50b5e9f7e4b009224db8f53d";
-			break;
-
-			case "madrid":
-			location="4d683074d4c288bf50da7065";
-			break;
-
-			case "bangkok":
-			location= "4d21b7010901721e2ff29ca5";
-			break;
-
-			case "mexico":
-			location="4f3b7619e4b08082ae2bb300";
-			break;
-			case "sydney":
-			location="5081ca91e4b0607ce86717c3";
-			break;
-
-			case "telaviv":
-			location="4c4a3ca59c8d2d7febc63969";
-			break;
-
-			case "saopaulo":
-			location = "4ce1b9a37e2e236af1e4911b";
-			break;
+	//Uses var next to grab the next set of data. 
+	function grab(next){
+		if(fetching) {
+			fetching.abort();
 		}
-		getLocation(location);
-	})
-		
-				
+		fetching = $.ajax(insta_photo+next, {
+			data: {'access_token':access_token},
+			dataType:'jsonp',
+			success: getPhoto,
+			complete: fetching= null
+		});
+	}
+	
 	$('#next').click(function(){
-		$('#target div').hide().next().show();
 
 	});
 });
