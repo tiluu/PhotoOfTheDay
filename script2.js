@@ -76,7 +76,7 @@ function getLocation(location){
 		console.log(pics);
 		next="&max_id="+pics.pagination.next_max_id;
 		data=pics.data.length
-		
+		$('div#loader img').hide();
 		$.each(pics.data, function(index, data){
 			tag=data.tags
 			for(i=0; i<=tag.length; i++){
