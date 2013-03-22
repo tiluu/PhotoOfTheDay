@@ -31,7 +31,7 @@ jQuery(function($){
 	$('nav a:eq(0)').click();
 
 	$(window).scroll(function(){
-		if($(window).scrollTop()+$(window).height() > $(document).height()-200){
+		if($(window).scrollTop()+$(window).height() > $(document).height()-600){
 			counter=0;
 			grab(next);
 		}
@@ -41,7 +41,6 @@ jQuery(function($){
 			$('nav').removeClass('city')
 		}
 	});
-
 //Retrives photos from location with location ids 
 function getLocation(location){
 		$.ajax(insta_url+location, {
@@ -81,17 +80,18 @@ function getLocation(location){
 			tag=data.tags
 			for(i=0; i<=tag.length; i++){
 				if(tag[i]==hashTag){
-					photo = "<div><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
-					$('#target').append(photo).fadeIn('2000','easeOutQuart');
+					photo = $("<div><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>").hide();
+					$('#target').append(photo);
+					photo.fadeIn(2000);
 					counter++;
 				}
 			}
 		});
 		
 		if(counter<=11){
-			grab(next);
-			
+			grab(next);	
 		}
+		
 	}
 	//Uses var next to grab the next set of data. 
 	function grab(next){
