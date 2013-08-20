@@ -28,7 +28,6 @@ jQuery(function($){
 	$('nav a:eq(0)').click();
 
 	$(window).scroll(function(){
-		
 		if($(window).scrollTop()+$(window).height() > $(document).height()-600){
 			counter=0;
 			grab(next);
@@ -39,9 +38,11 @@ jQuery(function($){
 			$('nav').removeClass('city')
 		}
 	});
+
 	$('div#target div').load(function(){
 		$('div#target div').fadeIn(2000);
 	})
+
 //Retrives photos from location with location ids 
 function getLocation(location){
 		$.ajax(insta_url+location, {
@@ -75,6 +76,7 @@ function getLocation(location){
 	function getPhoto(pics){
 		var data;
 		console.log(pics);
+
 		next = "&max_id="+pics.pagination.next_max_id;
 		data = pics.data.length
 		$('div#loader img').hide();
@@ -84,6 +86,7 @@ function getLocation(location){
 				if(tag[i]==hashTag){
 					photo = "<div><a href='" +data.link+ "'target=_blank><img src='" +data.images.standard_resolution.url + "'></a></div>";
 					$('#target').append(photo);
+
 					counter++;
 				}
 			}

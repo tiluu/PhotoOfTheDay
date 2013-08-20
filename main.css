@@ -63,6 +63,7 @@ div#loader {
 div#loader img {
 	position: relative;
 	display: hidden;
+	background-color: #f0f0f0;
 	height: 20px;
 	width: 20px;
 	left: 50%;
