@@ -1,4 +1,4 @@
--oofd
+#photoOftheDay
 =====
 
-Location based #oofd using Instagram API
+Location based #photooftheday using Instagram API
