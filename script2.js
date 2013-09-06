@@ -8,13 +8,18 @@ jQuery(function($){
 	, insta_photo
 	, header = $('nav').offset().top
 
-	$('a').hover(function(){
-			$(this).toggleClass('highlight');
-		})
 
 	$('nav a').click(function(){
 		var location= $(this).data('city');
 		next= " ";
+		//var cityName = $(this).text()
+		//if (cityName == 'NYC'){
+		//	$('h1#currentCity').text('New York City')
+		//} else if(cityName == 'San Fran'){
+		//	$('h1#currentCity').text('San Francisco')
+		//} else {
+		//	$('h1#currentCity').text(cityName)
+		//}
 		$('a.current').removeClass('current');
 		$(this).addClass('current')
 		if(fetching) {
@@ -112,5 +117,5 @@ function getLocation(location){
 			complete: fetching= null
 		});
 	}
-
+	
 });
