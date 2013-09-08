@@ -22,10 +22,10 @@ aside {
 	background-color: #D6D4CE;
 	color: #f0f0f0;
 	text-align: left;
-	-webkit-transition 	: left 1s ease-out;
-	-moz-transition  	: left 1s ease-out;
-	-o-transition 		: left 1s ease-out;
-	transition 			: left 1s ease-out;
+	-webkit-transition 	: left .5s ease;
+	-moz-transition  	: left .5s ease;
+	-o-transition 		: left .5s ease;
+	transition 			: left .5s ease;
 	border-right 	: solid #96E2EC 2px;	
 	-webkit-border-top-right-radius: 2px;
 	-webkit-border-bottom-right-radius: 2px;
@@ -38,10 +38,17 @@ aside {
 aside:hover {
 	left : 0px;
 }
+#nav-tab {
+	position 		: relative;
+	left 			: 102px;
+	top 			: 5px; 
+	background   	: url('nav.png') 0 0;
+	height 			: 10px;
+	width 			: 11px;
+}
 h1 {
 	margin: 0;
-	padding: 10px 0;
-	
+	padding: 10px 0;	
 }
 nav.fullCities {
 	padding-top: 120px;
