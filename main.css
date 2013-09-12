@@ -17,7 +17,7 @@ body, html {
 aside {
 	position 	: fixed;
 	left 		: -100px;
-	width 		: 116px;
+	width 		: 127px;
 	height 		: 100%; 
 	background-color: #D6D4CE;
 	color: #f0f0f0;
@@ -40,11 +40,11 @@ aside:hover {
 }
 #nav-tab {
 	position 		: relative;
-	left 			: 102px;
+	left 			: 107px;
 	top 			: 5px; 
 	background   	: url('nav.png') 0 0;
 	height 			: 10px;
-	width 			: 11px;
+	width 			: 12px;
 }
 h1 {
 	margin: 0;
